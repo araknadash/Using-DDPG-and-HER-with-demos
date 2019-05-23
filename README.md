@@ -2,7 +2,7 @@
 Implementation of the Deep Deterministic Policy gradient and Hindisight Experience Replay algorithms along with demonstrations help achieve faster success rate for a Pick and Place task in mujoco environment. 
 
 
-> Note: This repository is a modification of her baselines from OpenAI
+> Note: This repository is a modification of baselines from OpenAI
 
 ## Results
 Training with demonstrations helps overcome the exploration problem and achieves a faster and better convergence. The following graphs contrast the difference between training with and without demonstration data, I report the the mean Q values vs Epoch and the Success Rate vs Epoch:
@@ -15,16 +15,15 @@ Training with demonstrations helps overcome the exploration problem and achieves
 <p></p>
 
 
-Clearly, the use of demonstrations enables a faster and better convergence in the Q values as apparent from the graphs. Also the success condition is achieved much faster reaching upto 100% performance just around the 400th epoch whereas in the case without demonstrations even after 1000 iterations the agent hardly reaches 70% success rate (Check unde /assets for the Final training video which shows Fetch Robot doing the Pick and Place task). The video shows the agent's learned behavior corresponding to the pick and place task in a perfect manner.
+Clearly, the use of demonstrations enables a faster and better convergence in the Q values as apparent from the graphs. Also the success condition is achieved much faster reaching upto 100% performance just around the 400th epoch whereas in the case without demonstrations even after 1000 iterations the agent hardly reaches 70% success rate (Check under /assets for the Final training video which shows Fetch Robot doing the Pick and Place task). The video shows the agent's learned behavior corresponding to the pick and place task in a perfect manner.
 
 
 ## Installation 
 1. Install Python 3.5 or higher on a 16.04 Ubuntu machine with enough GPU (ex. Lambda PC)
 
+2. Clone this package in your working directory with `git clone xxx`
 
-3. Clone this package in your working directory with `git clone xxx`
-
-4. Add this package to your PYTHONPATH or if you are not familiar with that alternatively edit `sys.path.append('/path/to/your-file/')`  in **train.py**, **play.py** and **config.py**
+3. Add this package to your PYTHONPATH or if you are not familiar with that alternatively edit `sys.path.append('/path/to/your-file/')`  in **train.py**, **play.py** and **config.py**
 
 
 ## Environments
@@ -95,7 +94,7 @@ def sample_batch(self):
 
 
 ## Behavior Cloning Loss applied on the actor's actions
-Second, we introduce a new loss computed only on the demonstration examples for training the actor. This loss is a standard loss in imitation learning, but we show that using it as an  auxiliary loss for RL improves learning significantly. The loss implementation can be seen in the following code. Refer to the blog for more information on equations.
+Second, we introduce a new loss computed only on the demonstration examples for training the actor. This loss is a standard loss in imitation learning, but we show that using it as an  auxiliary loss for RL improves learning significantly. The loss implementation can be seen in the following code.
 
 
 ## Q-value filter to account for imperfect demonstrations
@@ -140,7 +139,7 @@ Here, we first mask the samples such as to get the cloning loss only on the demo
 ## Generating demonstrations
 The first step is to generate the demonstration dataset. This can be done in two ways, either by using a VR system to manipulate the arm using physical VR trackers or the simpler way is to write a script to carry out the respective task. Now some tasks can be complex and thus it would be difficult to write a hardcoded script for that task (eg. Fetch Push), but here our focus is on providing an algorithm that helps the agent to learn from demonstrations, and not on the demonstration generation paradigm itself. Thus the data collection part is left to the reader's choice.
 
-I have provide a script for the Fetch Pick and Place task, to generate demonstrations for the Pick and Place task execute:
+I have provided a script for the Fetch Pick and Place task, to generate demonstrations for the Pick and Place task execute:
 ```bash
 python experiment/data_generation/fetch_data_generation.py
 ```
